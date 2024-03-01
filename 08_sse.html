@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div style="width: 500px; height: 500px; border: 1px solid #ccc;"></div>
+  <script>
+    /**
+     * SSE(Server-Sent-Events) 是一种用于实现服务器主动向客户端推送数据的技术，也被称为“事件流”，
+     * 它基于 http 协议，利用了其长连接特性，在客户端与服务器之间建立一条持久化连接，并通过这条连接实现服务器向客户端的实时数据推送
+     * 主要是实现长连接的，这个长连接是单向通讯的
+     * 前端只发一次给后端，后端可以实时的发送数据给前端
+     * 使用场景：
+     * 1、chatgpt 返回的数据，就是使用的 SSE 技术。
+     * 2、实时数据大屏，如果只是需要展示 实时的数据可以使用 SSE 技术，而不是非要使用 webSocket 
+     */
+    const div = document.querySelector('div')
+    const sse = new EventSource('http://localhost:3000/api/sse')
+    sse.addEventListener('message', (e) => {
+      div.innerText += e.data
+    })
+  </script>
+</body>
+
+</html>
