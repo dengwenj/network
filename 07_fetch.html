@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">发送请求</button>
+  <script>
+    const btn = document.querySelector('#btn')
+    btn.addEventListener('click', () => {
+      // 第一个参数 url 默认请求方式 get 返回值是一个 promise
+      // fetch('http://localhost:3000/api/gettest').then((res) => {
+      //   console.log(res);
+      //   return res.text()
+      // }).then((data) => {
+      //   console.log(data);
+      // })
+      // 中断使用
+      const abort = new AbortController()
+      fetch('http://localhost:3000/api/posttest', {
+        method: 'POST',
+        signal: abort.signal,
+        body: {
+          name: "朴睦"
+        }
+      }).then((res) => {
+        // 进度条
+        console.log(res.body.getReader()); // 返回一个流
+        console.log(res);
+        return res.json()
+      }).then((data) => {
+        console.log(data);
+      })
+      // 中断
+      abort.abort()
+    })
+  </script>
+</body>
+
+</html>

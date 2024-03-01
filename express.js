@@ -12,7 +12,7 @@ app.get('/api/jsonp', (req, res) => {
 app.get('/api/gettest', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.send({
-    name: req.query.name
+    name: '你好世界'
   })
 })
 
