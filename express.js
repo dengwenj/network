@@ -9,6 +9,20 @@ app.get('/api/jsonp', (req, res) => {
   res.send(`${callback}('你好，世界')`)
 })
 
+app.get('/api/gettest', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.send({
+    name: req.query.name
+  })
+})
+
+app.post('/api/posttest', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.send({
+    code: 200
+  })
+})
+
 app.listen(3000, () => {
   console.log('服务器启动成功')
 })

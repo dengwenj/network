@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">发送请求</button>
+  <script>
+    /**
+     *  Ajax可以用来实现以下功能：
+     * 1、异步更新页面内容（如搜索建议、聊天框）
+     * 2、在页面中特定区域显示动态数据
+     * 3、提交表单数据而无需刷新整个页面
+     * 4、与服务器进行交互，不会导致页面跳转或刷新
+     * 
+     * Ajax 的只要有点包括：
+     * 1、提高用户体验：通过减少页面的重载和刷新，使得网站变得更加灵活和动态
+     * 2、减轻服务器负载：通过使用 Ajax，可以有效减少服务器接收到的请求次数和需要响应的数据量，从而减轻服务器的负担
+     * 3、提高响应速度：使用 Ajax 可以异步获取数据并更新页面，从而提高响应速度
+     * 4、增加交互性：通过使用 Ajax，可以使得页面变得更加动态和交互性 
+     * 
+     * 也需要注意一些文图：
+     * 1、Ajax 对搜索引擎优化(SEO)劣势较大
+     * 2、在使用 Ajax 时，需要考虑数据安全性和网络安全性问题，并采取相应的措施加以防范
+    */
+
+    const btn = document.getElementById('btn')
+    btn.addEventListener('click', () => {
+      sendAjax()
+    })
+
+    const sendAjax = () => {
+      const xhr = new XMLHttpRequest()
+
+      // xhr.open('get', 'http://localhost:3000/api/gettest?name=朴睦')
+      xhr.open('post', 'http://localhost:3000/api/posttest')
+      xhr.addEventListener('load', (e) => {
+        console.log(e.target.responseText);
+      })
+      xhr.send(JSON.stringify({
+        name: '朴睦'
+      }))
+    }
+  </script>
+</body>
+
+</html>
