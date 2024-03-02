@@ -47,6 +47,14 @@ app.get('/api/sse', (req, res) => {
   }, 300)
 })
 
+
+// navigator.sendBeacon
+app.post('/api/sendBeacon', (req, res) => {
+  console.log(req.body);
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.send('ok')
+})
+
 app.listen(3000, () => {
   console.log('服务器启动成功')
 })

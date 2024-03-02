@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button>发送请求</button>
+  <script>
+    /**
+     * navigator.sendBeacon 也可以发送网络请求
+     * 使用 navigator.sendBeacon 实现高效的数据上报
+     * 在 web 开发中，我们经常需要将用户行为或性能数据上报到服务器。为了不影响用户体验，开发者通常会在页面卸载时进行数据上报，
+     * 然而。传统的数据上报方式，如 XMLHTTPRequest 或 fetch API，容易受到页面卸载过程中阻塞，导致数据丢失。为了解决这个问题，
+     * navigator.sendBeacon API 被引入，他可以在页面卸载时安全、可靠的发送数据
+     * 
+     * navigator.sendBeacon 和 Ajax fetch 对比
+     * 优点
+     * 1、不受页面卸载过程的影响，确保数据可靠发送
+     * 2、异步执行，不阻塞页面关闭或跳转
+     * 3、能够发生跨域请求
+     * 缺点
+     * 1、sendBeacon 只能发送 post 请求
+     * 2、navigator.sendBeacon 只能传送少量的数据（64kb 以内）
+     * 3、navigator.sendBeacon 无法自定义请求头
+     * 4、navigator.sendBeacon 只能传输 ArrayBuffer、ArrayBufferView、Blob、DOMString、FormData、或 URLSearchParams 类型的数据
+     * 5、如果处于危险的网络环境，或者开启了广告屏蔽插件、此请求将无效
+     * 
+     * navigator.sendBeacon 应用场景
+     * 1、发送心跳包
+     * 2、埋点：在页面关闭或卸载时记录用户在线时间等等
+     * 3、发送用户反馈
+     * */
+
+    document.querySelector('button').addEventListener('click', () => {
+      const jsonObj = JSON.stringify({ name: "朴睦" })
+      const blob = new Blob([jsonObj])
+      navigator.sendBeacon('http://localhost:3000/api/sendBeacon', blob)
+    })
+  </script>
+</body>
+
+</html>
