@@ -5,7 +5,8 @@
   "main": "01_OSI七层参数考模型和TCPIP.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./express"
+    "start": "node ./express",
+    "serve": "node ./ws"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/dengwenj/network#readme",
   "dependencies": {
-    "express": "^4.18.3"
+    "express": "^4.18.3",
+    "ws": "^8.16.0"
   }
 }
