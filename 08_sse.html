@@ -9,6 +9,7 @@
 
 <body>
   <div style="width: 500px; height: 500px; border: 1px solid #ccc;"></div>
+  <button id="btn">关闭</button>
   <script>
     /**
      * SSE(Server-Sent-Events) 是一种用于实现服务器主动向客户端推送数据的技术，也被称为“事件流”，
@@ -23,6 +24,11 @@
     const sse = new EventSource('http://localhost:3000/api/sse')
     sse.addEventListener('message', (e) => {
       div.innerText += e.data
+    })
+
+    // 关闭长连接
+    document.querySelector('#btn').addEventListener('click', () => {
+      sse.close()
     })
   </script>
 </body>

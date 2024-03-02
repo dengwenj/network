@@ -26,21 +26,21 @@ app.post('/api/posttest', (req, res) => {
 
 // SSE
 app.get('/api/sse', (req, res) => {
-   res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Origin', '*')
   res.writeHead(200, {
     // 开启 sse，核心代码设置对应的请求头
     'Content-Type': 'text/event-stream'
   })
 
   const txt = fs.readFileSync('./demo.txt', 'utf8')
-  console.log(txt, 'txttxttxt');
   const arr = txt.split('')
   let current = 0
 
   let timer = setInterval(() => {
     if (current < arr.length) {
-      res.write(`data: ${arr[current]}`)
-      current++
+      // res.write(`event: pu\n`) // 要加 \n
+      res.write(`data: ${arr[current]}\n\n`) // 要加 \n\n
+      current++ 
     } else {
       clearInterval(timer)
     }
