@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1、前端的网络状态如何获取以及对应的事件
+    // navigator.onLine true 在线 false 离线
+    console.log(navigator.onLine)
+    window.addEventListener('online', () => {
+      console.log("有网");
+    })
+    window.addEventListener('offline', () => {
+      console.log("无网");
+    })
+
+    // 如何区分强网和弱网环境
+    console.log(navigator.connection);
+  </script>
+</body>
+
+</html>
